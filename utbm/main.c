@@ -3,7 +3,7 @@
 //  utbm
 //
 //  Created by Pierre on 06/03/2019.
-//  Copyright © 2019 Pierre. All rights reserved.
+//  Copyright © 2019 Pierre. All rights.
 //
 
 #include <stdio.h>
