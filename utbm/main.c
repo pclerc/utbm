@@ -8,69 +8,35 @@
 
 #include <stdio.h>
 #include <math.h>
-/*
+
 int main(int argc, const char * argv[]) {
     
-    int a = 0, b = 0, booleen = 0;
-    float real;
-    printf("Donnez moi 2 entiers, différent de 0.\n");
+    int n, nombrePremier, div, nombreATester;
+    printf("Vous voulez combien de nombre premiers ?\n");
+    scanf("%d", &n);
+    printf("Voici les %d 1er nombre premiers.\n",n);
+    printf("2,3,5,7,11");
+    
+    nombrePremier = 5;
+    nombreATester = 11;
     
     do
     {
-        if (booleen != 0)
+        nombreATester = nombreATester + 2;
+        div = 3;
+        
+        while ((nombreATester % div != 0)  && (div < sqrt(nombreATester)))
         {
-            printf("Vous devez mettre un entier different de 0 !\n");
-            
+            div = div + 2;
         }
         
-        printf("Notez le 1er nombre:\n");
-        scanf("%i", &a);
-        printf("Le 2eme nombre:\n");
-        scanf("%i", &b);
-        booleen = 1;
-        
-    } while (a == 0 || b == 0);
+        if (nombreATester % div != 0)
+        {
+            printf(",%d",nombreATester);
+            nombrePremier ++;
+        }
+    } while (nombrePremier < n);
     
-    real = (float)a/b;
-    printf("Résultat, a / b: %.1f\n", real);
-    real = (float)b/a;
-    printf("Resultat: b / a: %.1f\n", real);
-    
-    return 0;
-}
-*/
-int main(int argc, const char * argv[])
-{
-    float rayon;
-    printf("Donnez moi un rayon.\n");
-    scanf("%f", &rayon);
-    printf("Votre diametre de cercle: %.1f m^2\n", M_PI * 4 * rayon * rayon);
-    printf("Votre volume de cercle: %.1f m^3\n", pow(rayon,3) * (4*M_PI)/3);
     return 0;
 }
 
-/*
-int main(int argc, const char * argv[]) {
-    int a, b;
-    printf("Donner un nombre entier.\n");
-    scanf("%i", &a);
-    printf("Donner un second nombre entier.\n");
-    scanf("%i", &b);
-    if (a!=b)
-    {
-        if (a<b)
-        {
-            printf("a est plus petit que b.\n");
-        }
-        else
-        {
-            printf("b est plus petit que a.\n");
-        }
-    }
-    else
-    {
-        printf("a est egal a b.\n");
-    }
-    return 0;
-}
-*/
