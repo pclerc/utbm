@@ -8,35 +8,44 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+
+int demander(int plusPetit, int plusGrand, int erreur, char nomVariable[]);
+float cylindre(int hauteur, int rayon, char surfaceOuVolume[]);
 
 int main(int argc, const char * argv[]) {
     
-    int n, nombrePremier, div, nombreATester;
-    printf("Vous voulez combien de nombre premiers ?\n");
-    scanf("%d", &n);
-    printf("Voici les %d 1er nombre premiers.\n",n);
-    printf("2,3,5,7,11");
-    
-    nombrePremier = 5;
-    nombreATester = 11;
-    
-    do
-    {
-        nombreATester = nombreATester + 2;
-        div = 3;
-        
-        while ((nombreATester % div != 0)  && (div < sqrt(nombreATester)))
-        {
-            div = div + 2;
-        }
-        
-        if (nombreATester % div != 0)
-        {
-            printf(",%d",nombreATester);
-            nombrePremier ++;
-        }
-    } while (nombrePremier < n);
-    
+    int hauteur = demander(0, 200, 0, "hauteur"), rayon = demander(0,1000,1, "rayon");
+    printf("Le cylindre a une volume de %0.2f cm^3\net une surface de %0.2f cm^2.\n", cylindre(hauteur, rayon, "volume"), cylindre(hauteur, rayon, "surface"));
     return 0;
 }
+
+float cylindre(int hauteur, int rayon, char surfaceOuVolume[])
+{
+    float resultat = 0;
+    if (strcmp(surfaceOuVolume, "surface") == 0)
+        { resultat = 2 * M_PI * rayon * (rayon + hauteur); }
+    else
+        { resultat = M_PI * pow(rayon, 2) * hauteur; }
+    return resultat;
+}
+
+int demander(int plusPetit, int plusGrand, int erreur, char nomVariable[])
+{
+    int valeur;
+    printf("Donnez un(e) %s entre %d et %d.\n", nomVariable, plusPetit, plusGrand);
+    scanf("%d", &valeur);
+    while (valeur < plusPetit || valeur > plusGrand)
+    {
+        if (erreur)
+        {
+            printf("Vous devez indiquer un(e) %s entre %d et %d !\n", nomVariable, plusPetit, plusGrand);
+        }
+        scanf("%d", &valeur);
+    }
+    return valeur;
+}
+
 
